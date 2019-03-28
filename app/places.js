@@ -47,7 +47,7 @@ const createRouter = connection => {
                 return res.status(500).send({error: error.sqlMessage});
             }
 
-            res.send({message: 'place deleted!'});
+            res.send({message: 'Place deleted!'});
         });
     });
 
