@@ -7,11 +7,11 @@ const app = express();
 const port = 8000;
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    port     : '3306',
-    user     : 'root',
-    password : '55558888',
-    database : 'lab79'
+    'host'     : 'localhost',
+    'port'     : '3306',
+    'user'     : 'root',
+    'password' : '55558888',
+    'database' : 'lab79'
 });
 
 app.use(express.json());
@@ -23,8 +23,6 @@ connection.connect(err => {
         console.error('error connecting: ' + err.stack);
         return;
     }
-
-    // console.log('connected as id ' + connection.threadId);
 
     app.listen(port, () => {
         console.log(`Server started on ${port} port`);
