@@ -62,11 +62,13 @@ const createRouter = connection => {
                     return res.status(500).send({error: error.sqlMessage});
                 }
 
-                if (results.affectedRows === 0) {
-                    return res.status(404).send({error: 'Category not found'})
-                }
+                connection.query('SELECT * FROM `categories` WHERE id = ?', updatedCategory.id, (error, results) => {
+                    if (error) {
+                        return res.send({error: error.sqlMessage})
+                    }
 
-                res.send(updatedCategory);
+                    res.send(results);
+                });
 
             });
     });

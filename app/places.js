@@ -62,11 +62,13 @@ const createRouter = connection => {
                     return res.status(500).send({error: error.sqlMessage});
                 }
 
-                if (results.affectedRows === 0) {
-                    return res.status(404).send({error: 'Place not found'})
-                }
+                connection.query('SELECT * FROM `places` WHERE id = ?', updatedPlace.id, (error, results) => {
+                    if (error) {
+                        return res.send({error: error.sqlMessage})
+                    }
 
-                res.send(updatedPlace);
+                    res.send(results);
+                });
             });
     });
 
